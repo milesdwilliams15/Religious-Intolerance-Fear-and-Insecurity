@@ -4,7 +4,7 @@
 # -------------------------------------------
 
 # Get the data
-path <- file.path()
+path <- file.path("https://raw.githubusercontent.com/milesdwilliams15/Religious-Intolerance-Fear-and-Insecurity/master/data.csv")
 relDem <- read.csv(path)
 
 attach(relDem)
