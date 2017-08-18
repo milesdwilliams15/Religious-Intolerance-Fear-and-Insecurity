@@ -58,8 +58,7 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
     
   } else {
     # Set up the page
-    grid.newpage()
-    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+    grid.newpage()    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
     
     # Make each plot, in the correct location
     for (i in 1:numPlots) {
@@ -123,44 +122,3 @@ plot(spc4,edge.width=abs(E(spc4)$width),edge.curved=0.15,layout=fr1,
      vertex.size=35,vertex.label.cex=.75,vertex.label.color="black")
 legend("bottomleft",legend=c("(+) Correlation","(-) Correlation"),
        lty=1,lwd=2,col=c("darkblue","red"))
-
-
-windows()
-g1 <- ggplot(data=data.frame(Religion,Religious.Tolerance),
-       aes(x=reorder(Religion,Religious.Tolerance),y=Religious.Tolerance)) + geom_boxplot() + theme_bw() +
-  theme(text=element_text(family="serif")) +
-  xlab("Dominant Religious Tradition") + ylab("Religious Tolerance")
-g2 <- ggplot(data=data.frame(Religion,Religious.Tolerance),
-       aes(x=Democracy,y=Religious.Tolerance)) + geom_boxplot() + theme_bw() +
-  theme(text=element_text(family="serif")) +
-  xlab("Political Regime") + ylab("Religious Tolerance")
-multiplot(g1,g2,cols=2)
-
-windows()
-g1 <- ggplot(data=data.frame(Religion,Trust.in.Neighbors),
-             aes(x=reorder(Religion,Trust.in.Neighbors),y=Trust.in.Neighbors)) + geom_boxplot() + theme_bw() +
-  theme(text=element_text(family="serif")) +
-  xlab("Dominant Religious Tradition") + ylab("Trust in Neighbors")
-g2 <- ggplot(data=data.frame(Religion,Trust.in.Neighbors),
-             aes(x=Democracy,y=Trust.in.Neighbors)) + geom_boxplot() + theme_bw() +
-  theme(text=element_text(family="serif")) +
-  xlab("Political Regime") + ylab("Trust in Neighbors")
-multiplot(g1,g2,cols=2)
-
-windows()
-g1 <- ggplot(data=data.frame(Religious.Pluralism,Security.Worries,Country,Democracy),
-             aes(x=Religious.Pluralism,y=Security.Worries,color=Democracy)) + geom_point(alpha=0) + theme_bw() +
-  geom_smooth() +
-  theme(legend.position=c(0.2,0.2)) +
-  theme(legend.title=element_blank()) +
-  geom_text(aes(label=Country)) +
-  theme(text=element_text(family="serif")) + 
-  xlab("Religious Pluralism") + ylab("Fear of Conflict")
-g2 <- ggplot(data=data.frame(Religious.Tolerance,Security.Worries,Country,Democracy),
-             aes(x=Religious.Tolerance,y=Security.Worries,color=Democracy)) + geom_point(alpha=0) + theme_bw() +
-  geom_smooth() +
-  geom_text(aes(label=Country)) +
-  theme(legend.position="none") +
-  theme(text=element_text(family="serif")) + 
-  xlab("Religious Tolerance") + ylab("Fear of Conflict")
-multiplot(g1,g2,cols=2)
