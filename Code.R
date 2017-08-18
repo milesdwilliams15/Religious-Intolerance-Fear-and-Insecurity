@@ -4,12 +4,8 @@
 # -------------------------------------------
 
 # Get the data
-path <- file.path("https://raw.githubusercontent.com/milesdwilliams15/Religious-Intolerance-Fear-and-Insecurity/master/data.csv")
-dat <- read.csv(path)
-write.csv(dat,"C:/Users/Miles/Documents/R/Religious Tolerance and Democracy/dat.csv")
-path <- file.path("C:","Users","Miles","Documents","R","Religious Tolerance and Democracy","dat.csv")
+path <- file.path("https://github.com/milesdwilliams15/Religious-Intolerance-Fear-and-Insecurity/blob/master/dat.csv")
 relDem <- read.csv(path)
-
 attach(relDem)
 
 
@@ -116,8 +112,7 @@ spc4$Var2 <- c("Trust in\nNeighbors","Security\nWorries","Security\nWorries","Re
 library(igraph)
 spc4 <- graph_from_data_frame(spc4, directed = F)
 E(spc4)$width <- 10*E(spc4)$estimate
-E(spc4)$color <- NA
-E(spc4)$color[E(spc4)$estimate > 0] <- "darkblue"
+E(spc4)$color <- NAE(spc4)$color[E(spc4)$estimate > 0] <- "darkblue"
 E(spc4)$color[E(spc4)$estimate < 0] <- "red"
 
 fr1 <- layout_with_fr(spc4)
